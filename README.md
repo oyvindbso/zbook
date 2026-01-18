@@ -55,6 +55,11 @@ Return to the main screen and tap the **Sync** button (or select "Sync" from the
 *   **Database**: Android Room
 *   **Utilities**: Pinyin4j (for Chinese Pinyin support)
 
+## Compatibility
+
+*   **Android Version**: Requires Android 6.0 (Marshmallow, API Level 23) or higher.
+*   **Device Types**: Optimized for E-Ink readers (Onyx Boox, etc.) and standard Android tablets/phones.
+
 ## Building
 
 This project is built using Gradle.
