@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/action_recent_files"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="Recently Opened"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_sync"
+        android:icon="@drawable/icons8_refresh_120"
+        android:title="Sync"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_download_center"
+        android:title="Download Center"
+        app:showAsAction="never" />
+
+    <item android:title="Sort by">
+        <menu>
+            <group
+                android:id="@+id/group_sort_by"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_sort_by_name"
+                    android:title="Name" />
+                <item
+                    android:id="@+id/action_sort_by_author"
+                    android:title="Author" />
+                <item
+                    android:id="@+id/action_sort_by_publishdate"
+                    android:title="Publish Date" />
+                <item
+                    android:id="@+id/action_sort_by_date_added"
+                    android:title="Date Added" />
+                <item
+                    android:id="@+id/action_sort_by_file_size"
+                    android:title="File Size" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Sort order">
+        <menu>
+            <group
+                android:id="@+id/group_sort_order"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_sort_order_asc"
+                    android:title="Ascending" />
+                <item
+                    android:id="@+id/action_sort_order_desc"
+                    android:title="Descending" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="Settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_about"
+        android:title="About"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_clear_data"
+        android:title="Clear Local Data"
+        app:showAsAction="never" />
+
+</menu>

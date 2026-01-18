@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:paddingTop="15dp"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp">
+
+
+    <ImageView
+        android:id="@+id/file_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/item_type_pdf" />
+
+    <TextView
+        android:id="@+id/file_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:lines="1"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/button_action"
+        app:layout_constraintStart_toEndOf="@+id/file_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Some Very Long File Name That Might Wrap.pdf" />
+
+    <TextView
+        android:id="@+id/item_author_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?android:attr/textColorSecondaryNoDisable"
+        app:layout_constraintEnd_toEndOf="@id/file_name"
+        app:layout_constraintStart_toStartOf="@id/file_name"
+        app:layout_constraintTop_toBottomOf="@id/file_name"
+        tools:text="Author Name (2023)" />
+
+    <ProgressBar
+        android:id="@+id/download_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/file_name"
+        app:layout_constraintStart_toStartOf="@+id/file_name"
+        app:layout_constraintTop_toBottomOf="@+id/file_name" />
+
+    <ImageButton
+        android:id="@+id/button_action"
+        android:layout_width="30dp"
+        android:layout_height="26dp"
+        android:src="@drawable/attachment_detail_download"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/icon_down" />
+
+    <TextView
+        android:id="@+id/download_progress_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="@+id/button_action"
+        app:layout_constraintTop_toBottomOf="@+id/button_action"
+        tools:text="12.2 MB / 51.8 MB" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

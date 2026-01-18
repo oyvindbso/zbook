@@ -1,0 +1,82 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+def getGitVersionName = { ->
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            // Use --abbrev=0 to shorten the hash, then we will parse it
+            commandLine 'git', 'describe', '--tags', '--abbrev=0'
+            standardOutput = stdout
+        }
+        def versionWithCommitCount = stdout.toString().trim()
+
+        // Remove the commit count suffix (e.g., "-1") if it exists
+        def tag = versionWithCommitCount.replaceAll(/-\d+$/, '')
+
+        // Remove the leading 'v' if it exists
+        return tag.replaceAll(/^v/, '')
+    } catch (Exception e) {
+        // In case of error (e.g., no git repo, no tags), return a fallback.
+        return "1.0.5-local"
+    }
+}
+
+android {
+    namespace 'com.hexin.zbook'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.hexin.zbook"
+        minSdk 23
+        targetSdk 34
+        versionCode 1
+        versionName getGitVersionName()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def appName = "ZBook"
+            def versionName = variant.versionName
+            def newApkName = "${appName}-${versionName}.apk"
+            outputFileName = new File(newApkName).name
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation libs.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
+    implementation 'com.belerweb:pinyin4j:2.5.1'
+
+    // Room for database
+    def room_version = "2.4.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // Retrofit for networking
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+}
