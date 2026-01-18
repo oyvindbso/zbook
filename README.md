@@ -2,6 +2,15 @@
 
 ZBook is an Android application designed to synchronize and manage your Zotero library on the go. It allows you to browse your collections, search for items, and download attachments for offline reading.
 
+## Motivation
+
+While the official Zotero for Android app is robust, it enforces the use of its embedded PDF reader. This can be less than ideal for specific use cases:
+
+*   **E-Ink Devices**: Devices like Onyx Boox (NoteP, etc.) often have specialized system readers optimized for their E-Ink screens (refresh rates, contrast, scribbling). Using the official app's embedded reader bypasses these optimizations.
+*   **Flexibility**: Users may prefer professional third-party PDF readers (like Moon+ Reader, Adobe Acrobat) that offer features not available in the official client.
+
+**ZBook** was developed to bridge this gap. It synchronizes your library but allows you to open files using **your system's default viewer** or any installed app of your choice, providing a superior reading experience tailored to your device.
+
 ## Features
 
 *   **Zotero Sync**: Seamlessly sync your Zotero library (collections and items) using your API Key and User ID.
