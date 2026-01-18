@@ -23,11 +23,28 @@ While the official Zotero for Android app is robust, it enforces the use of its 
 *   **Offline Access**: Local caching (using Room database) allows you to browse your library even without an internet connection.
 *   **Recent Items**: Quickly access your recently opened files.
 
-## Getting Started
+## Usage Instructions
 
-1.  **Settings**: Open the app and go to Settings.
-2.  **Credentials**: Enter your Zotero User ID and API Key.
-3.  **Sync**: Tap the Sync button to fetch your library data.
+### 1. Configure Zotero Access
+To sync your library, you need to generate a private key for ZBook:
+1.  Log in to [Zotero.org](https://www.zotero.org).
+2.  Navigate to **Home -> Settings -> Security -> Applications**.
+3.  Click **"Create new private key"**.
+4.  Make sure to grant read access to your library.
+5.  Note down your **User ID** (e.g., "Your userID for use in API calls is XXXXXXX").
+6.  Copy the generated **API Key**.
+
+### 2. Configure App Settings
+Open ZBook and go to **Settings**:
+1.  **Zotero Config**: Enter your **User ID** and **API Key** from the previous step.
+2.  **WebDAV Config**:
+    *   **Note**: Currently, ZBook only supports **WebDAV** for file storage and syncing.
+    *   Enter your WebDAV **URL**, **Username**, and **Password**.
+3.  Tap **"Test Connection"** (optional) to verify settings.
+4.  Tap **"Save"**.
+
+### 3. Sync
+Return to the main screen and tap the **Sync** button (or select "Sync" from the menu) to fetch your library structure and items.
 
 ## Technologies Used
 
