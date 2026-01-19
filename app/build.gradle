@@ -53,10 +53,6 @@ android {
 
     buildTypes {
         release {
-            // Only use release signing config if storeFile is configured
-            if (signingConfigs.release.storeFile != null) {
-                signingConfig signingConfigs.release
-            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -74,6 +70,13 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+// Apply signing config only if keystore is available (evaluated after android block)
+afterEvaluate {
+    if (android.signingConfigs.release.storeFile != null) {
+        android.buildTypes.release.signingConfig = android.signingConfigs.release
     }
 }
 
