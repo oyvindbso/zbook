@@ -39,7 +39,9 @@ android {
 
     signingConfigs {
         release {
-            def keystoreFile = file("keystore.jks")
+            // Support both CI (KEYSTORE_FILE env var) and local development (keystore.jks)
+            def keystoreFilePath = System.getenv("KEYSTORE_FILE")
+            def keystoreFile = keystoreFilePath ? file(keystoreFilePath) : file("keystore.jks")
             if (keystoreFile.exists()) {
                 storeFile keystoreFile
                 storePassword System.getenv("KEYSTORE_PASSWORD")
@@ -51,7 +53,10 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            // Only use release signing config if storeFile is configured
+            if (signingConfigs.release.storeFile != null) {
+                signingConfig signingConfigs.release
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
