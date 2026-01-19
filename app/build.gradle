@@ -54,7 +54,9 @@ android {
 
     buildTypes {
         release {
-            signingConfig hasKeystore ? signingConfigs.release : signingConfigs.debug
+            // Use findByName to safely get release config (returns null if not defined)
+            def releaseSigningConfig = signingConfigs.findByName('release')
+            signingConfig releaseSigningConfig ?: signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
