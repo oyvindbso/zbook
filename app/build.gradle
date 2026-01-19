@@ -51,7 +51,13 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            // Only use release signing config if keystore exists, otherwise use debug
+            def keystoreFile = file("keystore.jks")
+            if (keystoreFile.exists()) {
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
