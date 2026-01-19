@@ -23,6 +23,10 @@ def getGitVersionName = { ->
     }
 }
 
+// Check for keystore at the top level before android block
+def keystoreFile = file("keystore.jks")
+def hasKeystore = keystoreFile.exists()
+
 android {
     namespace 'com.hexin.zbook'
     compileSdk 36
@@ -38,9 +42,8 @@ android {
     }
 
     signingConfigs {
-        release {
-            def keystoreFile = file("keystore.jks")
-            if (keystoreFile.exists()) {
+        if (hasKeystore) {
+            release {
                 storeFile keystoreFile
                 storePassword System.getenv("KEYSTORE_PASSWORD")
                 keyAlias System.getenv("KEY_ALIAS")
@@ -51,13 +54,7 @@ android {
 
     buildTypes {
         release {
-            // Only use release signing config if keystore exists, otherwise use debug
-            def keystoreFile = file("keystore.jks")
-            if (keystoreFile.exists()) {
-                signingConfig signingConfigs.release
-            } else {
-                signingConfig signingConfigs.debug
-            }
+            signingConfig hasKeystore ? signingConfigs.release : signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
